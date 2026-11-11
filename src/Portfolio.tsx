@@ -35,6 +35,8 @@ gsap.registerPlugin(ScrollTrigger);
 const WHATSAPP = "https://wa.me/554491446929";
 const LINKEDIN = "https://www.linkedin.com/in/lucastroo99";
 const LANG_KEY = "portfolio-lang";
+// Liga a secao de video quando os arquivos existirem em public/video.
+const VIDEO_READY = false;
 
 function initialLang(): Lang {
   try {
@@ -593,6 +595,47 @@ function PortfolioPage({
       </div>
 
       {/* ═══════════════════════════════════
+           VIDEO
+         ═══════════════════════════════════ */}
+      {VIDEO_READY && (
+      <section id="video" className="py-28 sm:py-36 relative">
+        <div className="max-w-5xl mx-auto px-6 sm:px-8">
+          <div className="text-center mb-12">
+            <span className="gsap-reveal text-primary text-[12px] font-medium uppercase tracking-[0.2em] block mb-4">
+              {t.video.label}
+            </span>
+            <h2 className="gsap-reveal font-display text-4xl sm:text-5xl font-bold text-gradient-white pb-[0.14em] leading-tight mb-5">
+              {t.video.title}
+            </h2>
+            <p className="gsap-reveal text-white/45 text-lg max-w-2xl mx-auto">{t.video.text}</p>
+          </div>
+
+          <div className="gsap-reveal relative">
+            <div className="absolute -inset-8 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
+            <div className="relative rounded-3xl overflow-hidden gradient-border bg-black shadow-[0_40px_120px_rgba(0,0,0,0.6)]">
+              <video
+                className="block w-full aspect-video bg-black"
+                controls
+                playsInline
+                preload="none"
+                poster={`/video/poster-${lang}.jpg`}
+              >
+                <source src={`/video/lucas-${lang}.webm`} type="video/webm" />
+                <source src={`/video/lucas-${lang}.mp4`} type="video/mp4" />
+                <track
+                  kind="captions"
+                  src={`/video/captions-${lang}.vtt`}
+                  srcLang={lang === "pt" ? "pt-BR" : "en"}
+                  label={t.video.captions}
+                />
+              </video>
+            </div>
+          </div>
+        </div>
+      </section>
+      )}
+
+      {/* ═══════════════════════════════════
            HOW I WORK — HORIZONTAL SCROLL
          ═══════════════════════════════════ */}
       <section id="work" ref={hScrollRef} className="relative overflow-hidden">
@@ -664,6 +707,47 @@ function PortfolioPage({
               </span>
             ))}
           </p>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════
+           RECENT PROJECTS
+         ═══════════════════════════════════ */}
+      <section id="projects" className="py-32 relative scroll-mt-10">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8">
+          <div className="mb-16 max-w-3xl">
+            <span className="gsap-reveal text-primary text-[12px] font-medium uppercase tracking-[0.2em] block mb-4">
+              {t.projects.label}
+            </span>
+            <h2 className="gsap-reveal font-display text-4xl sm:text-5xl md:text-6xl font-bold text-gradient-white pb-[0.14em] leading-tight mb-6">
+              {t.projects.title}
+            </h2>
+            <p className="gsap-reveal text-white/45 text-lg leading-relaxed">{t.projects.text}</p>
+          </div>
+
+          <div className="gsap-reveal-stagger grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+            {t.projects.items.map((project, i) => (
+              <article
+                key={i}
+                className="glass-card rounded-2xl p-7 flex flex-col group relative overflow-hidden"
+              >
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <span className="text-[11px] text-accent/80 font-mono uppercase tracking-[0.3em] mb-5">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <div className="mb-6">
+                  <div className="font-display text-3xl sm:text-[2rem] font-extrabold tracking-tight text-gradient leading-tight pb-[0.1em]">
+                    {project.metric}
+                  </div>
+                  <div className="text-[12px] text-white/45 mt-1">{project.metricSub}</div>
+                </div>
+                <h3 className="text-[17px] font-semibold text-white leading-snug mb-3">
+                  {project.title}
+                </h3>
+                <p className="text-white/50 text-sm leading-relaxed">{project.desc}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

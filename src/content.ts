@@ -15,7 +15,7 @@ const pt = {
     links: [
       { label: "Como trabalho", href: "#work" },
       { label: "Sobre", href: "#about" },
-      { label: "Stack", href: "#stack" },
+      { label: "Projetos", href: "#projects" },
       { label: "Processo", href: "#process" },
     ],
     contact: "Contato",
@@ -83,8 +83,75 @@ const pt = {
       },
     ],
   },
+  video: {
+    label: "Vídeo",
+    title: "Como esta página foi feita",
+    text: "Menos de um minuto sobre o método, usando a própria página como exemplo.",
+    captions: "Português",
+  },
   statement:
     "A IA escreve o código. A decisão continua sendo minha. E eu só chamo de pronto o que consigo provar.",
+  projects: {
+    label: "Projetos recentes",
+    title: "O que eu entreguei por último",
+    text: "Trabalho real, em produção. Os números vêm dos repositórios.",
+    items: [
+      {
+        title: "SDK de pagamento com campos seguros (PCI)",
+        metric: "19 dias",
+        metricSub: "do primeiro commit à primeira release",
+        desc: "Projetei e construí um SDK que permite a parceiros sem certificação PCI coletar cartão no próprio checkout, com os dados sensíveis isolados em iframe e cobrança autorizada por pedido assinado no servidor. Inclui script via CDN e pacotes npm para React e Vue.",
+      },
+      {
+        title: "Migração Vue 2 → Vue 3 de um painel administrativo",
+        metric: "875 arquivos",
+        metricSub: "+65 mil / −42 mil linhas, em produção",
+        desc: "Migrei uma SPA grande em cerca de 8 semanas, mantendo paridade visual e funcional, com troca de todas as bibliotecas presas ao Vue 2.",
+      },
+      {
+        title: "Bootstrap → Tailwind + design system",
+        metric: "1.180 arquivos",
+        metricSub: "+60 mil / −38 mil linhas",
+        desc: "Substituí os componentes legados em Bootstrap por um design system próprio em Tailwind, em ondas incrementais, com o CSS legado removido e a validação de formulários padronizada com Zod.",
+      },
+      {
+        title: "Cobertura de testes de um checkout",
+        metric: "128 → 2.450",
+        metricSub: "testes em 13 dias",
+        desc: "Implantei a infraestrutura de testes com Vitest e levei a suíte de 72 para 293 arquivos de teste. Isso deu a rede de segurança para as migrações e refatorações seguintes.",
+      },
+      {
+        title: "Migração de um checkout para Nuxt 4",
+        metric: "Nuxt 4",
+        metricSub: "Vitest 4 e i18n v10",
+        desc: "Atualizei o checkout para Nuxt 4, com a nova estrutura de pastas, logo depois da campanha de testes e apoiado nela para validar que nada quebrou.",
+      },
+      {
+        title: "Vuex → Pinia",
+        metric: "Módulo a módulo",
+        metricSub: "sem parar as outras frentes",
+        desc: "Migrei o gerenciamento de estado do painel (autenticação, produtos, dados bancários e outros domínios) para Pinia, eliminando os módulos Vuex um a um, sem parar o desenvolvimento das outras frentes.",
+      },
+      {
+        title: "Migração Vue 2 → Vue 3 de uma área de membros",
+        metric: "Vue 2 → Vue 3",
+        metricSub: "Webpack → Vite",
+        desc: "Migrei a SPA de cursos (players e área do aluno) de Vue 2 para Vue 3, com Bootstrap 5 e novas bibliotecas de formulário e editor. O objetivo era sair do Vue 2 em fim de vida sem regressão para os usuários.",
+      },
+      {
+        title: "Documentação de engenharia de front-end",
+        metric: "Guia do time",
+        metricSub: "referência para code review",
+        desc: "Escrevi o guia de padrões de front-end do time (arquitetura, componentes, composables, i18n, configuração, deploy e monitoramento). Ele é distribuído dentro dos repositórios.",
+      },
+      {
+        title: "Ferramenta de análise de perfis do Instagram",
+        metric: "Do zero",
+        metricSub: "coleta, pontuação e dashboard",
+        desc: "Construí uma aplicação que coleta perfis, calcula pontuação de autoridade e cruza com a base de clientes. Tem dashboard com filtros, relatório por perfil e exportação em CSV.",
+      },
+    ],
+  },
   about: {
     label: "Quem sou",
     title: "Sobre mim",
@@ -214,7 +281,7 @@ const en: Content = {
     links: [
       { label: "How I work", href: "#work" },
       { label: "About", href: "#about" },
-      { label: "Stack", href: "#stack" },
+      { label: "Projects", href: "#projects" },
       { label: "Process", href: "#process" },
     ],
     contact: "Contact",
@@ -282,8 +349,75 @@ const en: Content = {
       },
     ],
   },
+  video: {
+    label: "Video",
+    title: "How this page was built",
+    text: "Under a minute on the method, using this very page as the example.",
+    captions: "English",
+  },
   statement:
     "AI writes the code. The decisions are still mine. And I only call it done when I can prove it.",
+  projects: {
+    label: "Recent projects",
+    title: "What I shipped most recently",
+    text: "Real work, in production. The numbers come from the repositories.",
+    items: [
+      {
+        title: "Payment SDK with secure fields (PCI)",
+        metric: "19 days",
+        metricSub: "from first commit to first release",
+        desc: "I designed and built an SDK that lets partners without PCI certification collect card data in their own checkout, with sensitive data isolated in an iframe and charges authorized by a server-signed request. Ships as a CDN script and npm packages for React and Vue.",
+      },
+      {
+        title: "Vue 2 → Vue 3 migration of an admin panel",
+        metric: "875 files",
+        metricSub: "+65k / −42k lines, in production",
+        desc: "I migrated a large SPA in about 8 weeks, keeping visual and functional parity and replacing every library tied to Vue 2.",
+      },
+      {
+        title: "Bootstrap → Tailwind + design system",
+        metric: "1,180 files",
+        metricSub: "+60k / −38k lines",
+        desc: "I replaced legacy Bootstrap components with an in-house Tailwind design system, in incremental waves, removing the legacy CSS and standardizing form validation with Zod.",
+      },
+      {
+        title: "Test coverage for a checkout",
+        metric: "128 → 2,450",
+        metricSub: "tests in 13 days",
+        desc: "I set up the test infrastructure with Vitest and took the suite from 72 to 293 test files. That became the safety net for the migrations and refactors that followed.",
+      },
+      {
+        title: "Checkout migration to Nuxt 4",
+        metric: "Nuxt 4",
+        metricSub: "Vitest 4 and i18n v10",
+        desc: "I upgraded the checkout to Nuxt 4, with the new folder structure, right after the testing campaign and relying on it to confirm nothing broke.",
+      },
+      {
+        title: "Vuex → Pinia",
+        metric: "Module by module",
+        metricSub: "without stopping other work",
+        desc: "I migrated the panel's state management (authentication, products, banking data and other domains) to Pinia, removing Vuex modules one at a time while the other workstreams kept shipping.",
+      },
+      {
+        title: "Vue 2 → Vue 3 migration of a members area",
+        metric: "Vue 2 → Vue 3",
+        metricSub: "Webpack → Vite",
+        desc: "I migrated the courses SPA (players and student area) from Vue 2 to Vue 3, with Bootstrap 5 and new form and editor libraries. The goal was to leave end-of-life Vue 2 with no regression for users.",
+      },
+      {
+        title: "Front-end engineering documentation",
+        metric: "Team guide",
+        metricSub: "the reference for code review",
+        desc: "I wrote the team's front-end standards guide (architecture, components, composables, i18n, configuration, deploy and monitoring). It ships inside the repositories.",
+      },
+      {
+        title: "Instagram profile analysis tool",
+        metric: "From scratch",
+        metricSub: "collection, scoring and dashboard",
+        desc: "I built an application that collects profiles, computes an authority score and cross-references it with the customer base. It has a dashboard with filters, a per-profile report and CSV export.",
+      },
+    ],
+  },
   about: {
     label: "Who I am",
     title: "About me",
