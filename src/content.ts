@@ -9,7 +9,7 @@ const pt = {
   meta: {
     title: "Lucas Castro — Engenharia de software com IA",
     description:
-      "Portfólio de Lucas Castro, desenvolvedor full-stack. IA aplicada à engenharia de software: Skills, MCP e Spec-Driven Development (SDD).",
+      "Portfólio de Lucas Castro, Tech Lead hands-on. Arquitetura e código com IA: IA aplicada à engenharia de software: Skills, MCP e Spec-Driven Development (SDD).",
   },
   nav: {
     links: [
@@ -23,7 +23,7 @@ const pt = {
   },
   hero: {
     badge: "IA · Skills · MCP · SDD",
-    kicker: "Lucas Castro · Desenvolvedor Full-Stack",
+    kicker: "Lucas Castro · Tech Lead hands-on",
     title: "Engenharia de software na era dos agentes",
     subtitle:
       "Construo produtos com IA no centro do processo: escrevo skills, conecto agentes a sistemas reais via MCP e conduzo o desenvolvimento por especificação, do pedido à entrega.",
@@ -89,10 +89,14 @@ const pt = {
     label: "Quem sou",
     title: "Sobre mim",
     name: "Lucas Ramos de Castro",
-    role: "Desenvolvedor Full-Stack · Engenharia com IA",
+    role: "Tech Lead hands-on | Arquitetura e código com IA",
+    lead: "Code is cheap. Good decisions aren't.",
     bio: [
-      "Desenvolvedor full-stack focado em transformar dores reais em produto funcionando, com velocidade. Formado em Análise e Desenvolvimento de Sistemas pela Unipar, com pós-graduação em Inteligência Artificial pela Unicesumar.",
-      "Já atuei como Tech Manager liderando squads em um produto de marketing digital, responsável por decisões técnicas e entregas contínuas. Hoje meu foco é engenharia de software com agentes: skills, MCP e desenvolvimento guiado por especificação.",
+      "Sou Tech Lead hands-on. Programo todo dia, só que hoje com agentes de IA fazendo boa parte do trabalho pesado.",
+      "Trabalho com skills, agentes e servidores MCP que eu mesmo criei, além de SDD, e coloco em produção em uma tarde o que antes levava dias.",
+      "Só que entregar rápido resolve metade do problema. A outra metade é uma pergunta: isso realmente faz sentido?",
+      "Gosto de entrega rápida e de código com qualidade.",
+      "Formado em Análise e Desenvolvimento de Sistemas pela Unipar, com pós-graduação em Inteligência Artificial pela Unicesumar.",
     ],
     stats: [
       { label: "Tech Manager", sub: "Líder de squads" },
@@ -191,10 +195,7 @@ const pt = {
     button: "Fale comigo no WhatsApp",
   },
   footer: {
-    tagline: "Desenvolvedor full-stack. IA, Skills, MCP e SDD.",
-    projects: "Projetos",
-    tampaPlacaTitle: "TampaPlaca: esconda a placa do carro na foto antes de postar",
-    tampaPlacaDesc: "Tampa a placa do carro na foto, grátis e no navegador.",
+    tagline: "Tech Lead hands-on | Arquitetura e código com IA",
     contact: "Contato",
     rights: "Todos os direitos reservados.",
   },
@@ -206,7 +207,7 @@ const en: Content = {
   meta: {
     title: "Lucas Castro — AI-native software engineering",
     description:
-      "Portfolio of Lucas Castro, full-stack developer. AI applied to software engineering: Skills, MCP and Spec-Driven Development (SDD).",
+      "Portfolio of Lucas Castro, hands-on Tech Lead. Architecture and code with AI: AI applied to software engineering: Skills, MCP and Spec-Driven Development (SDD).",
   },
   nav: {
     links: [
@@ -220,7 +221,7 @@ const en: Content = {
   },
   hero: {
     badge: "AI · Skills · MCP · SDD",
-    kicker: "Lucas Castro · Full-Stack Developer",
+    kicker: "Lucas Castro · Hands-on Tech Lead",
     title: "Software engineering for the age of agents",
     subtitle:
       "I build products with AI at the core of the process: I write skills, connect agents to real systems through MCP and drive development from a spec, from request to delivery.",
@@ -286,10 +287,14 @@ const en: Content = {
     label: "Who I am",
     title: "About me",
     name: "Lucas Ramos de Castro",
-    role: "Full-Stack Developer · AI Engineering",
+    role: "Hands-on Tech Lead | Architecture and code with AI",
+    lead: "Code is cheap. Good decisions aren't.",
     bio: [
-      "Full-stack developer focused on turning real pain points into working product, fast. I hold a degree in Systems Analysis and Development from Unipar and a postgraduate degree in Artificial Intelligence from Unicesumar.",
-      "I have worked as a Tech Manager leading squads on a digital marketing product, owning technical decisions and continuous delivery. Today my focus is software engineering with agents: skills, MCP and spec-driven development.",
+      "I'm a hands-on Tech Lead. I code every day, only now with AI agents doing a good part of the heavy lifting.",
+      "I work with skills, agents and MCP servers I built myself, plus SDD, and I ship to production in an afternoon what used to take days.",
+      "But shipping fast solves only half of the problem. The other half is a question: does this actually make sense?",
+      "I like fast delivery and quality code.",
+      "I hold a degree in Systems Analysis and Development from Unipar and a postgraduate degree in Artificial Intelligence from Unicesumar.",
     ],
     stats: [
       { label: "Tech Manager", sub: "Squad lead" },
@@ -388,10 +393,7 @@ const en: Content = {
     button: "Message me on WhatsApp",
   },
   footer: {
-    tagline: "Full-stack developer. AI, Skills, MCP and SDD.",
-    projects: "Projects",
-    tampaPlacaTitle: "TampaPlaca: hide your car's license plate in a photo before posting",
-    tampaPlacaDesc: "Hides the license plate in your car photo, free and in the browser.",
+    tagline: "Hands-on Tech Lead | Architecture and code with AI",
     contact: "Contact",
     rights: "All rights reserved.",
   },

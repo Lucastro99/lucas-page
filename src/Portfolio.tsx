@@ -18,7 +18,7 @@ import {
   Server,
   Cpu,
   Brain,
-  Car,
+  Linkedin,
   Puzzle,
   Plug,
   FileText,
@@ -33,6 +33,7 @@ import { content, LANGS, type Content, type Lang } from "./content";
 gsap.registerPlugin(ScrollTrigger);
 
 const WHATSAPP = "https://wa.me/554491446929";
+const LINKEDIN = "https://www.linkedin.com/in/lucastroo99";
 const LANG_KEY = "portfolio-lang";
 
 function initialLang(): Lang {
@@ -59,6 +60,29 @@ function Monogram() {
 /* ═══════════════════════════════════════════════
    LANGUAGE SWITCH
    ═══════════════════════════════════════════════ */
+const FLAGS: Record<Lang, React.ReactNode> = {
+  pt: (
+    <svg viewBox="0 0 20 20" className="w-full h-full" aria-hidden="true">
+      <rect width="20" height="20" fill="#009C3B" />
+      <polygon points="10,3.4 17.6,10 10,16.6 2.4,10" fill="#FFDF00" />
+      <circle cx="10" cy="10" r="3.3" fill="#002776" />
+      <path d="M6.9 9.2c2.3-.5 4.6.1 6.3 1.6" fill="none" stroke="#fff" strokeWidth="0.7" />
+    </svg>
+  ),
+  en: (
+    <svg viewBox="0 0 20 20" className="w-full h-full" aria-hidden="true">
+      <rect width="20" height="20" fill="#fff" />
+      {[0, 2, 4, 6, 8, 10, 12].map((i) => (
+        <rect key={i} y={(i * 20) / 13} width="20" height={20 / 13} fill="#B22234" />
+      ))}
+      <rect width="10.5" height={(7 * 20) / 13} fill="#3C3B6E" />
+      {[2.2, 5.2, 8.2].map((x) =>
+        [2.4, 5.4, 8.4].map((y) => <circle key={`${x}-${y}`} cx={x} cy={y} r="0.75" fill="#fff" />)
+      )}
+    </svg>
+  ),
+};
+
 function LanguageSwitch({
   lang,
   onChange,
@@ -72,7 +96,7 @@ function LanguageSwitch({
     <div
       role="group"
       aria-label={label}
-      className="flex items-center gap-0.5 p-1 rounded-full border border-white/8 bg-white/[0.03]"
+      className="flex items-center gap-1 p-1 rounded-full border border-white/8 bg-white/[0.03]"
     >
       {LANGS.map((l) => {
         const active = l.code === lang;
@@ -82,14 +106,24 @@ function LanguageSwitch({
             type="button"
             lang={l.code}
             title={l.name}
+            aria-label={l.name}
             aria-pressed={active}
             onClick={() => onChange(l.code)}
-            className={`hoverable px-3 py-1.5 rounded-full text-[11px] font-semibold tracking-[0.12em] transition-all duration-500 ${
+            className={`hoverable flex items-center gap-1.5 pl-1 pr-2.5 py-1 rounded-full text-[11px] font-semibold tracking-[0.1em] transition-all duration-500 ${
               active
-                ? "bg-primary text-white shadow-[0_0_24px_rgba(124,58,237,0.35)]"
-                : "text-white/40 hover:text-white"
+                ? "bg-white/10 text-white"
+                : "text-white/35 hover:text-white/80"
             }`}
           >
+            <span
+              className={`block w-5 h-5 rounded-full overflow-hidden transition-all duration-500 ${
+                active
+                  ? "ring-2 ring-primary shadow-[0_0_16px_rgba(124,58,237,0.5)]"
+                  : "opacity-50 grayscale-[40%] ring-1 ring-white/10"
+              }`}
+            >
+              {FLAGS[l.code]}
+            </span>
             {l.label}
           </button>
         );
@@ -99,7 +133,7 @@ function LanguageSwitch({
 }
 
 /* ═══════════════════════════════════════════════
-   NAVBAR
+   NAVBAR — always visible, fixed at the top
    ═══════════════════════════════════════════════ */
 function Navbar({
   t,
@@ -110,58 +144,44 @@ function Navbar({
   lang: Lang;
   onLangChange: (lang: Lang) => void;
 }) {
-  const navRef = useRef<HTMLElement>(null);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-
-    if (navRef.current) {
-      gsap.fromTo(
-        navRef.current,
-        { y: -100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, delay: 0.5, ease: "power3.out" }
-      );
-    }
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <nav
-      ref={navRef}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-        scrolled ? "py-3 glass" : "py-6 bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between gap-4">
-        <a href="#" className="flex items-center gap-2.5 group hoverable">
+    <nav className="fixed top-0 left-0 right-0 z-50 py-3 glass">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 flex items-center justify-between gap-3 sm:gap-4">
+        <a href="#" className="flex items-center gap-2.5 group hoverable flex-shrink-0">
           <Monogram />
-          <span className="hidden sm:inline text-lg font-bold tracking-tight font-display">
+          <span className="hidden sm:inline md:hidden lg:inline text-lg font-bold tracking-tight font-display">
             Lucas Castro
           </span>
         </a>
 
-        <div className="hidden lg:flex items-center gap-9">
+        <div className="hidden md:flex items-center gap-6 lg:gap-9">
           {t.nav.links.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="hoverable text-[13px] text-white/40 hover:text-white transition-colors duration-500 uppercase tracking-[0.15em] font-medium"
+              className="hoverable text-[12px] lg:text-[13px] text-white/50 hover:text-white transition-colors duration-500 uppercase tracking-[0.15em] font-medium whitespace-nowrap"
             >
               {item.label}
             </a>
           ))}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
           <LanguageSwitch lang={lang} onChange={onLangChange} label={t.nav.language} />
+          <a
+            href={LINKEDIN}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            title="LinkedIn"
+            className="hoverable hidden sm:inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/8 text-white/50 hover:text-white hover:border-white/20 hover:bg-white/5 transition-all duration-500"
+          >
+            <Linkedin className="h-4 w-4" />
+          </a>
           <a
             href={WHATSAPP}
             aria-label={t.nav.contact}
-            className="hoverable btn-magnetic inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary/80 transition-all duration-500 hover:shadow-[0_0_40px_rgba(124,58,237,0.3)]"
+            className="hoverable btn-magnetic inline-flex items-center gap-2 px-3.5 sm:px-5 py-2.5 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary/80 transition-all duration-500 hover:shadow-[0_0_40px_rgba(124,58,237,0.3)]"
           >
             <MessageCircle className="h-4 w-4" />
             <span className="hidden sm:inline">{t.nav.contact}</span>
@@ -668,6 +688,10 @@ function PortfolioPage({
               </h3>
               <p className="gsap-reveal text-primary font-medium mb-8 text-[15px]">{t.about.role}</p>
 
+              <p className="gsap-reveal font-display text-2xl sm:text-3xl font-bold leading-snug tracking-tight text-gradient mb-8">
+                {t.about.lead}
+              </p>
+
               {t.about.bio.map((paragraph, i) => (
                 <p key={i} className="gsap-reveal text-white/45 leading-[1.8] mb-5 text-base">
                   {paragraph}
@@ -831,7 +855,7 @@ function PortfolioPage({
             {t.cta.title}
           </h2>
           <p className="gsap-reveal text-white/40 text-lg mb-14 max-w-xl mx-auto">{t.cta.text}</p>
-          <div className="gsap-reveal flex justify-center">
+          <div className="gsap-reveal flex flex-col sm:flex-row justify-center gap-4">
             <a
               href={WHATSAPP}
               className="hoverable btn-magnetic inline-flex items-center justify-center gap-2.5 px-10 py-5 bg-primary text-white font-semibold rounded-full text-lg hover:shadow-[0_0_60px_rgba(124,58,237,0.35)] transition-all duration-500"
@@ -839,6 +863,15 @@ function PortfolioPage({
               <MessageCircle className="h-5 w-5" />
               {t.cta.button}
               <ArrowUpRight className="h-4 w-4" />
+            </a>
+            <a
+              href={LINKEDIN}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hoverable btn-magnetic inline-flex items-center justify-center gap-2.5 px-10 py-5 border border-white/8 text-white/70 font-semibold rounded-full text-lg hover:bg-white/5 hover:border-white/15 transition-all duration-500"
+            >
+              <Linkedin className="h-5 w-5" />
+              LinkedIn
             </a>
           </div>
         </div>
@@ -849,7 +882,7 @@ function PortfolioPage({
          ═══════════════════════════════════ */}
       <footer className="border-t border-white/[0.03] py-16">
         <div className="max-w-7xl mx-auto px-6 sm:px-8">
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-12">
             <div>
               <div className="flex items-center gap-2.5 mb-4">
                 <Monogram />
@@ -860,32 +893,26 @@ function PortfolioPage({
 
             <div>
               <h3 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40 mb-5">
-                {t.footer.projects}
+                {t.footer.contact}
               </h3>
               <div className="space-y-3">
                 <a
-                  href="https://tampaplaca.zaptus.com.br/"
-                  title={t.footer.tampaPlacaTitle}
+                  href={LINKEDIN}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hoverable flex items-center gap-2.5 text-white/35 hover:text-white/70 transition-colors duration-500 text-sm"
                 >
-                  <Car className="h-4 w-4" />
-                  TampaPlaca
+                  <Linkedin className="h-4 w-4" />
+                  LinkedIn
                 </a>
-                <p className="text-white/25 text-xs leading-relaxed">{t.footer.tampaPlacaDesc}</p>
+                <a
+                  href={WHATSAPP}
+                  className="hoverable flex items-center gap-2.5 text-white/35 hover:text-white/70 transition-colors duration-500 text-sm"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  WhatsApp
+                </a>
               </div>
-            </div>
-
-            <div>
-              <h3 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40 mb-5">
-                {t.footer.contact}
-              </h3>
-              <a
-                href={WHATSAPP}
-                className="hoverable flex items-center gap-2.5 text-white/35 hover:text-white/70 transition-colors duration-500 text-sm"
-              >
-                <MessageCircle className="h-4 w-4" />
-                WhatsApp
-              </a>
             </div>
           </div>
 
