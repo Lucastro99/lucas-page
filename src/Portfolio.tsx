@@ -37,6 +37,8 @@ const LINKEDIN = "https://www.linkedin.com/in/lucastroo99";
 const LANG_KEY = "portfolio-lang";
 // Liga a secao de video quando os arquivos existirem em public/video.
 const VIDEO_READY = true;
+// Aumente ao trocar os arquivos de video: o CDN guarda o mp4 em cache por horas.
+const VIDEO_VERSION = "2";
 
 function initialLang(): Lang {
   try {
@@ -629,7 +631,7 @@ function PortfolioPage({
                 preload="none"
                 poster={`/video/poster-${lang}.jpg`}
               >
-                <source src={`/video/lucas-${lang}.mp4`} type="video/mp4" />
+                <source src={`/video/lucas-${lang}.mp4?v=${VIDEO_VERSION}`} type="video/mp4" />
                 <track
                   kind="captions"
                   src={`/video/captions-${lang}.vtt`}
