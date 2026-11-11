@@ -32,7 +32,7 @@ import { content, LANGS, type Content, type Lang } from "./content";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const WHATSAPP = "https://wa.me/554491446929";
+const WHATSAPP = "https://wa.me/5544997393135";
 const LINKEDIN = "https://www.linkedin.com/in/lucastroo99";
 const LANG_KEY = "portfolio-lang";
 // Liga a secao de video quando os arquivos existirem em public/video.
