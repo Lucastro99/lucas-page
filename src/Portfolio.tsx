@@ -36,7 +36,7 @@ const WHATSAPP = "https://wa.me/554491446929";
 const LINKEDIN = "https://www.linkedin.com/in/lucastroo99";
 const LANG_KEY = "portfolio-lang";
 // Liga a secao de video quando os arquivos existirem em public/video.
-const VIDEO_READY = false;
+const VIDEO_READY = true;
 
 function initialLang(): Lang {
   try {
@@ -602,7 +602,7 @@ function PortfolioPage({
            VIDEO
          ═══════════════════════════════════ */}
       {VIDEO_READY && (
-      <section id="video" className="py-28 sm:py-36 relative">
+      <section id="video" className="py-28 sm:py-36 relative overflow-hidden">
         <div className="max-w-5xl mx-auto px-6 sm:px-8">
           <div className="text-center mb-12">
             <span className="gsap-reveal text-primary text-[12px] font-medium uppercase tracking-[0.2em] block mb-4">
@@ -624,7 +624,6 @@ function PortfolioPage({
                 preload="none"
                 poster={`/video/poster-${lang}.jpg`}
               >
-                <source src={`/video/lucas-${lang}.webm`} type="video/webm" />
                 <source src={`/video/lucas-${lang}.mp4`} type="video/mp4" />
                 <track
                   kind="captions"

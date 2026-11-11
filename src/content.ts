@@ -290,7 +290,7 @@ const en: Content = {
   hero: {
     badge: "AI · Skills · MCP · SDD",
     kicker: "Lucas Castro · Hands-on Tech Lead",
-    title: "Code got cheap. Good decisions didn't.",
+    title: "Code is cheap. Good decisions aren't.",
     subtitle:
       "I code every day with AI agents. They write a large share of the code. I decide what to build, define the contract and prove the result is right before it ships.",
     primaryCta: "Get in touch",
