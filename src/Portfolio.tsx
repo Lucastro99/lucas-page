@@ -313,8 +313,13 @@ function PortfolioPage({
   const hScrollRef = useRef<HTMLDivElement>(null);
   const hTrackRef = useRef<HTMLDivElement>(null);
 
+  // The pinned horizontal scroll only runs on wide screens with a mouse or trackpad.
+  // On phones and tablets the panels stack and scroll natively, which is reliable on
+  // iOS where pinned scroll fights the collapsing address bar and touch momentum.
   useEffect(() => {
-    const ctx = gsap.context(() => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1024px) and (pointer: fine)", () => {
       const track = hTrackRef.current;
       const section = hScrollRef.current;
       if (!track || !section) return;
@@ -337,9 +342,9 @@ function PortfolioPage({
         })
         .to(track, { x: () => -distance(), ease: "none", duration: () => distance() })
         .to({}, { duration: () => hold() });
-    }, mainRef);
+    });
 
-    return () => ctx.revert();
+    return () => mm.revert();
   }, []);
 
   /* ── Statement + generic reveals ── */
@@ -642,8 +647,8 @@ function PortfolioPage({
            HOW I WORK — HORIZONTAL SCROLL
          ═══════════════════════════════════ */}
       <section id="work" ref={hScrollRef} className="relative overflow-hidden">
-        <div ref={hTrackRef} className="flex items-stretch h-screen">
-          <div className="flex-shrink-0 w-screen h-full flex items-center pt-16">
+        <div ref={hTrackRef} className="hscroll-track flex flex-col">
+          <div className="hscroll-panel flex items-center py-20">
             <div className="max-w-3xl mx-auto px-6 sm:px-8">
               <span className="text-primary text-[12px] font-medium uppercase tracking-[0.2em] block mb-4">
                 {t.work.label}
@@ -652,7 +657,7 @@ function PortfolioPage({
                 {t.work.title}
               </h2>
               <p className="text-white/40 text-lg leading-relaxed max-w-xl">{t.work.text}</p>
-              <div className="mt-10 flex items-center gap-3 text-white/25 text-sm">
+              <div className="hscroll-hint mt-10 items-center gap-3 text-white/25 text-sm">
                 <span>{t.work.hint}</span>
                 <ArrowRight className="h-4 w-4" />
               </div>
@@ -660,7 +665,7 @@ function PortfolioPage({
           </div>
 
           {t.work.panels.map((panel, i) => (
-            <div key={i} className="flex-shrink-0 w-screen h-full flex items-center px-6 sm:px-8 pt-16">
+            <div key={i} className="hscroll-panel flex items-center px-6 sm:px-8 py-16">
               <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-2 gap-8 lg:gap-20 items-center">
                 <div>
                   <span className="text-[11px] text-primary/80 font-mono uppercase tracking-[0.3em] mb-4 block">
