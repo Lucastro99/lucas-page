@@ -53,9 +53,28 @@ function initialLang(): Lang {
    ═══════════════════════════════════════════════ */
 function Monogram() {
   return (
-    <span className="w-9 h-9 rounded-[10px] bg-primary flex items-center justify-center text-[13px] font-bold tracking-tight text-white font-display">
-      LC
-    </span>
+    <svg viewBox="0 0 40 40" fill="none" className="w-9 h-9 flex-shrink-0" aria-hidden="true">
+      <defs>
+        <linearGradient id="lc-bg" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#1B1033" />
+          <stop offset="1" stopColor="#0B0A14" />
+        </linearGradient>
+        <linearGradient id="lc-stroke" x1="8" y1="8" x2="32" y2="32" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#C4B5FD" />
+          <stop offset="0.55" stopColor="#8B5CF6" />
+          <stop offset="1" stopColor="#7C3AED" />
+        </linearGradient>
+        <linearGradient id="lc-border" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+          <stop stopColor="#A78BFA" stopOpacity="0.9" />
+          <stop offset="0.5" stopColor="#7C3AED" stopOpacity="0.25" />
+          <stop offset="1" stopColor="#A78BFA" stopOpacity="0.6" />
+        </linearGradient>
+      </defs>
+      <rect x="0.75" y="0.75" width="38.5" height="38.5" rx="10.5" fill="url(#lc-bg)" stroke="url(#lc-border)" strokeWidth="1.5" />
+      <path d="M11.5 11.5V28.5H18" stroke="url(#lc-stroke)" strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M30.2 14.9A7.4 7.4 0 1 0 30.2 25.1" stroke="url(#lc-stroke)" strokeWidth="3.4" strokeLinecap="round" />
+      <circle cx="31.2" cy="20" r="1.9" fill="#FFFFFF" />
+    </svg>
   );
 }
 
@@ -470,6 +489,8 @@ function PortfolioPage({
         { name: "Prompt Eng.", level: "expert" as const },
         { name: "n8n", level: "advanced" as const },
         { name: "Claude API", level: "advanced" as const },
+        { name: "Claude Code", level: "expert" as const },
+        { name: "Claude Design", level: "expert" as const },
         { name: "Python ML", level: "intermediate" as const },
       ],
     },

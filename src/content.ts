@@ -42,7 +42,7 @@ const pt = {
         title: "Eu decido. O agente executa.",
         desc: "Agentes de IA escrevem, testam e revisam boa parte do código. Eu defino o problema, a arquitetura e o critério de pronto, escolho o modelo pela dificuldade da tarefa e respondo pelo que vai para produção.",
         features: [
-          "Agentes de código no trabalho diário",
+          "Claude Code no código, Claude Design na interface",
           "Modelo barato no simples, forte no crítico",
           "Quem implementa não é quem revisa",
           "A decisão técnica continua sendo minha",
@@ -171,7 +171,7 @@ const pt = {
       { label: "60+ alunos", sub: "3 anos ensinando" },
       { label: "Até 80%", sub: "Perf. multi-tenant" },
     ],
-    tags: ["Skills", "MCP", "SDD", "Multiagentes", "Liderança de squads", "Ensino e palestras"],
+    tags: ["Skills", "MCP", "SDD", "Claude Design", "Multiagentes", "Liderança de squads", "Ensino e palestras"],
   },
   stack: {
     title: "Stack & Tecnologias",
@@ -308,7 +308,7 @@ const en: Content = {
         title: "I decide. The agent executes.",
         desc: "AI agents write, test and review a large share of the code. I define the problem, the architecture and what done means, pick the model by how hard the task is, and own what goes to production.",
         features: [
-          "Coding agents in my daily work",
+          "Claude Code for code, Claude Design for UI",
           "Cheap model for simple work, strong for critical",
           "Whoever builds it doesn't review it",
           "Technical decisions stay with me",
@@ -437,7 +437,7 @@ const en: Content = {
       { label: "60+ students", sub: "3 years teaching" },
       { label: "Up to 80%", sub: "Multi-tenant perf." },
     ],
-    tags: ["Skills", "MCP", "SDD", "Multi-agent", "Squad leadership", "Teaching and talks"],
+    tags: ["Skills", "MCP", "SDD", "Claude Design", "Multi-agent", "Squad leadership", "Teaching and talks"],
   },
   stack: {
     title: "Stack & Technologies",
