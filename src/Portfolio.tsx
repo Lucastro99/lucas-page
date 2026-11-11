@@ -316,20 +316,23 @@ function PortfolioPage({
       if (!track || !section) return;
 
       const distance = () => track.scrollWidth - window.innerWidth;
+      // Extra scroll after the last panel so it rests on screen before the pin releases.
+      const hold = () => window.innerHeight * 0.6;
 
-      gsap.to(track, {
-        x: () => -distance(),
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: () => `+=${distance()}`,
-          scrub: 0.8,
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: () => `+=${distance() + hold()}`,
+            scrub: 0.8,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        })
+        .to(track, { x: () => -distance(), ease: "none", duration: () => distance() })
+        .to({}, { duration: () => hold() });
     }, mainRef);
 
     return () => ctx.revert();
@@ -458,7 +461,7 @@ function PortfolioPage({
       icon: <Brain className="h-5 w-5" />,
       title: t.stack.categories.ai,
       skills: [
-        { name: "IA Generativa", level: "expert" as const },
+        { name: t.stack.generativeAi, level: "expert" as const },
         { name: "OpenAI API", level: "expert" as const },
         { name: "LangChain", level: "advanced" as const },
         { name: "RAG", level: "advanced" as const },
@@ -501,7 +504,6 @@ function PortfolioPage({
                   alt={t.hero.photoAlt}
                   width={840}
                   height={1050}
-                  fetchPriority="high"
                   className="w-full aspect-[4/5] object-cover object-top rounded-3xl"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-50 pointer-events-none" />
@@ -595,12 +597,12 @@ function PortfolioPage({
          ═══════════════════════════════════ */}
       <section id="work" ref={hScrollRef} className="relative overflow-hidden">
         <div ref={hTrackRef} className="flex items-stretch h-screen">
-          <div className="flex-shrink-0 w-screen h-full flex items-center">
+          <div className="flex-shrink-0 w-screen h-full flex items-center pt-16">
             <div className="max-w-3xl mx-auto px-6 sm:px-8">
               <span className="text-primary text-[12px] font-medium uppercase tracking-[0.2em] block mb-4">
                 {t.work.label}
               </span>
-              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-gradient-white leading-tight mb-6">
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold text-gradient-white pb-[0.14em] leading-tight mb-6">
                 {t.work.title}
               </h2>
               <p className="text-white/40 text-lg leading-relaxed max-w-xl">{t.work.text}</p>
@@ -612,10 +614,10 @@ function PortfolioPage({
           </div>
 
           {t.work.panels.map((panel, i) => (
-            <div key={i} className="flex-shrink-0 w-screen h-full flex items-center px-6 sm:px-8">
+            <div key={i} className="flex-shrink-0 w-screen h-full flex items-center px-6 sm:px-8 pt-16">
               <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-2 gap-8 lg:gap-20 items-center">
                 <div>
-                  <span className="text-[11px] text-primary/50 font-mono uppercase tracking-[0.3em] mb-4 block">
+                  <span className="text-[11px] text-primary/80 font-mono uppercase tracking-[0.3em] mb-4 block">
                     {String(i + 1).padStart(2, "0")} / {total}
                   </span>
                   <div className="text-primary mb-5">{PANEL_ICONS[i]}</div>
@@ -636,7 +638,7 @@ function PortfolioPage({
                       key={fi}
                       className="glass-card rounded-2xl px-6 sm:px-7 py-4 sm:py-5 flex items-center gap-5 group"
                     >
-                      <span className="text-[11px] text-primary/40 font-mono">0{fi + 1}</span>
+                      <span className="text-[11px] text-primary/70 font-mono">0{fi + 1}</span>
                       <span className="text-white/60 font-medium text-[14px] sm:text-[15px] group-hover:text-white/90 transition-colors duration-500">
                         {f}
                       </span>
@@ -655,7 +657,7 @@ function PortfolioPage({
          ═══════════════════════════════════ */}
       <section className="py-40 sm:py-52 relative">
         <div className="max-w-5xl mx-auto px-6 sm:px-8 text-center" ref={statementRef}>
-          <p className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.15] tracking-tight">
+          <p className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.28] tracking-tight">
             {t.statement.split(" ").map((word, i) => (
               <span key={i} className="statement-word inline-block mr-[0.3em] opacity-10">
                 {word}
@@ -676,7 +678,7 @@ function PortfolioPage({
             <span className="gsap-reveal text-primary text-[12px] font-medium uppercase tracking-[0.2em] block mb-4">
               {t.about.label}
             </span>
-            <h2 className="gsap-reveal font-display text-4xl sm:text-5xl md:text-6xl font-bold text-gradient-white leading-tight">
+            <h2 className="gsap-reveal font-display text-4xl sm:text-5xl md:text-6xl font-bold text-gradient-white pb-[0.14em] leading-tight">
               {t.about.title}
             </h2>
           </div>
@@ -786,7 +788,7 @@ function PortfolioPage({
             <span className="gsap-reveal text-primary text-[12px] font-medium uppercase tracking-[0.2em] block mb-4">
               {t.process.label}
             </span>
-            <h2 className="gsap-reveal font-display text-4xl sm:text-5xl font-bold text-gradient-white mb-6 max-w-3xl mx-auto leading-tight">
+            <h2 className="gsap-reveal font-display text-4xl sm:text-5xl font-bold text-gradient-white pb-[0.14em] mb-6 max-w-3xl mx-auto leading-tight">
               {t.process.title}
             </h2>
             <p className="gsap-reveal text-white/40 text-lg max-w-2xl mx-auto">{t.process.text}</p>
@@ -819,7 +821,7 @@ function PortfolioPage({
               <span className="gsap-reveal text-primary text-[12px] font-medium uppercase tracking-[0.2em] block mb-4">
                 {t.why.label}
               </span>
-              <h2 className="gsap-reveal font-display text-4xl sm:text-5xl font-bold text-gradient-white leading-tight mb-6">
+              <h2 className="gsap-reveal font-display text-4xl sm:text-5xl font-bold text-gradient-white pb-[0.14em] leading-tight mb-6">
                 {t.why.title}
               </h2>
               <p className="gsap-reveal text-white/40 text-lg leading-relaxed">{t.why.text}</p>
@@ -851,7 +853,7 @@ function PortfolioPage({
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 sm:px-8 text-center">
-          <h2 className="gsap-reveal font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-gradient-white leading-tight">
+          <h2 className="gsap-reveal font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-gradient-white pb-[0.14em] leading-tight">
             {t.cta.title}
           </h2>
           <p className="gsap-reveal text-white/40 text-lg mb-14 max-w-xl mx-auto">{t.cta.text}</p>
@@ -888,7 +890,7 @@ function PortfolioPage({
                 <Monogram />
                 <span className="text-lg font-bold font-display">Lucas Castro</span>
               </div>
-              <p className="text-white/30 text-sm leading-relaxed">{t.footer.tagline}</p>
+              <p className="text-white/45 text-sm leading-relaxed">{t.footer.tagline}</p>
             </div>
 
             <div>
@@ -917,7 +919,7 @@ function PortfolioPage({
           </div>
 
           <div className="border-t border-white/[0.03] mt-14 pt-8">
-            <p className="text-white/25 text-sm text-center sm:text-left">
+            <p className="text-white/40 text-sm text-center sm:text-left">
               &copy; {new Date().getFullYear()} Lucas Castro. {t.footer.rights}
             </p>
           </div>

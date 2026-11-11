@@ -109,6 +109,7 @@ const pt = {
   stack: {
     title: "Stack & Tecnologias",
     mainTag: "Principal",
+    generativeAi: "IA Generativa",
     categories: {
       backend: "Back-End",
       frontend: "Front-End",
@@ -307,6 +308,7 @@ const en: Content = {
   stack: {
     title: "Stack & Technologies",
     mainTag: "Core",
+    generativeAi: "Generative AI",
     categories: {
       backend: "Back-End",
       frontend: "Front-End",
