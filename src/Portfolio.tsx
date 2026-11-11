@@ -156,12 +156,12 @@ function Navbar({
           </span>
         </a>
 
-        <div className="hidden md:flex items-center gap-6 lg:gap-9">
+        <div className="hidden md:flex items-center gap-5 lg:gap-9">
           {t.nav.links.map((item) => (
             <a
               key={item.href}
               href={item.href}
-              className="hoverable text-[12px] lg:text-[13px] text-white/50 hover:text-white transition-colors duration-500 uppercase tracking-[0.15em] font-medium whitespace-nowrap"
+              className="hoverable text-[11px] lg:text-[13px] text-white/50 hover:text-white transition-colors duration-500 uppercase tracking-[0.1em] lg:tracking-[0.15em] font-medium whitespace-nowrap"
             >
               {item.label}
             </a>
@@ -183,10 +183,10 @@ function Navbar({
           <a
             href={WHATSAPP}
             aria-label={t.nav.contact}
-            className="hoverable btn-magnetic inline-flex items-center gap-2 px-3.5 sm:px-5 py-2.5 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary/80 transition-all duration-500 hover:shadow-[0_0_40px_rgba(124,58,237,0.3)]"
+            className="hoverable btn-magnetic inline-flex items-center gap-2 px-3.5 lg:px-5 py-2.5 bg-primary text-white text-sm font-medium rounded-full hover:bg-primary/80 transition-all duration-500 hover:shadow-[0_0_40px_rgba(124,58,237,0.3)]"
           >
             <MessageCircle className="h-4 w-4" />
-            <span className="hidden sm:inline">{t.nav.contact}</span>
+            <span className="hidden lg:inline">{t.nav.contact}</span>
           </a>
         </div>
       </div>
