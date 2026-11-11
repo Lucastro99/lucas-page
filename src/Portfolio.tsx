@@ -54,9 +54,9 @@ function initialLang(): Lang {
 function Monogram() {
   return (
     <svg viewBox="0 0 40 40" fill="none" className="w-9 h-9 flex-shrink-0" aria-hidden="true">
-      <rect width="40" height="40" rx="11" fill="#7C3AED" />
+      <rect x="0.5" y="0.5" width="39" height="39" rx="10.5" fill="#000" stroke="#fff" strokeOpacity="0.12" />
       <path d="M13 10v20h14" stroke="#fff" strokeWidth="5" strokeLinecap="square" />
-      <rect x="23" y="10" width="5" height="5" rx="1" fill="#fff" opacity="0.55" />
+      <rect x="23" y="10" width="5" height="5" rx="1" fill="#7C3AED" />
     </svg>
   );
 }
