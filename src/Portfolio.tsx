@@ -638,7 +638,7 @@ function PortfolioPage({
                       key={fi}
                       className="glass-card rounded-2xl px-6 sm:px-7 py-4 sm:py-5 flex items-center gap-5 group"
                     >
-                      <span className="text-[11px] text-primary/70 font-mono">0{fi + 1}</span>
+                      <span className="text-[11px] text-accent/90 font-mono">0{fi + 1}</span>
                       <span className="text-white/60 font-medium text-[14px] sm:text-[15px] group-hover:text-white/90 transition-colors duration-500">
                         {f}
                       </span>
@@ -890,7 +890,7 @@ function PortfolioPage({
                 <Monogram />
                 <span className="text-lg font-bold font-display">Lucas Castro</span>
               </div>
-              <p className="text-white/45 text-sm leading-relaxed">{t.footer.tagline}</p>
+              <p className="text-white/60 text-sm leading-relaxed">{t.footer.tagline}</p>
             </div>
 
             <div>
@@ -919,7 +919,7 @@ function PortfolioPage({
           </div>
 
           <div className="border-t border-white/[0.03] mt-14 pt-8">
-            <p className="text-white/40 text-sm text-center sm:text-left">
+            <p className="text-white/50 text-sm text-center sm:text-left">
               &copy; {new Date().getFullYear()} Lucas Castro. {t.footer.rights}
             </p>
           </div>
